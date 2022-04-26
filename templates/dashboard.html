@@ -1,0 +1,236 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+    <!-- Widgets  -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body" style="background-color: blue">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-1">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count" style="color: white">{{ order }}</span></div>
+                                <div class="stat-heading" style="color: white">Order</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body" style="background-color: green">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-2">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <div class="stat-content" >
+                            <div class="text-left dib">
+                                <div class="stat-text" style="color: white"><span class="count">{{ product }}</span></div>
+                                <div class="stat-heading" style="color: white">Product</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body" style="background-color: red">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-3">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count" style="color: white">{{ supplier }}</span></div>
+                                <div class="stat-heading" style="color: white">Supplier</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body" style="background-color: orchid">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-4">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count" style="color: white">{{ buyer }}</span></div>
+                                <div class="stat-heading" style="color: white">Buyer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Widgets -->
+    
+    <div class="col-md-12">
+        <div class="col-md-6">
+    <canvas id="myChart1" width="800" height="400"></canvas>
+<script>
+const ctx = document.getElementById('myChart1').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Aston Martin', 'BMW', 'Chevrolet', 'Datsun', 'Ferrari', 'Bently'],
+        datasets: [{
+            label: 'Products    ',
+            data: [1, 1, 2, 3, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+</div>
+<div class="col-md-6">
+      
+        <canvas id="myChart" width="800" height="200"></canvas>
+        <script>
+
+            const ctx1 = document.getElementById('myChart').getContext('2d');
+            const myChart1 = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['Complete','Pending'],
+                    datasets: [{
+                        label: 'Orders',
+                        data: [1,2],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                      }
+                }
+            });
+            </script>
+        
+   </div>
+    </div>
+    
+    <div class="clearfix"></div>
+
+    <!-- Orders -->
+    <div class="orders">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Orders </h4>
+                    </div>
+                    <div class="card-body--">
+                        <div class="table-stats order-table ov-h">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th class="serial">#</th>
+                                        <th>Supplier</th>
+                                        <th>Product</th>
+                                        <th>Design</th>
+                                        <th>Color</th>
+                                        <th>Buyer</th>
+                                        <th>Season</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if orders %}
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td class="serial">{{ forloop.counter }}</td>
+                                        <td>{{ order.supplier }}</td>
+                                        <td>{{ order.product }}</td>
+                                        <td>{{ order.design }}</td>
+                                        <td>{{ order.color }}</td>
+                                        <td>{{ order.buyer }}</td>
+                                        <td>{{ order.season }}</td>
+                                        <td>{{ order.drop }}</td>
+                                        <td>{{ order.created_date }}</td>
+                                        <td>
+                                            {% if order.status == 'pending' %}
+                                                <a class="btn btn-warning" href="">{{ order.status }}</a>
+                                            {% elif order.status == 'decline' %}
+                                                <a class="btn btn-danger" href="">{{ order.status }}</a>
+                                            {% elif order.status == 'complete' %}
+                                                <a class="btn btn-success" href="">{{ order.status }}</a>
+                                            {% elif order.status == 'approved' %}
+                                                <a class="btn btn-primary" href="">{{ order.status }}</a>
+                                            {% elif order.status == 'bulk' %}
+                                                <a class="btn btn-secondary" href="">{{ order.status }}</a>
+                                            {% else %}
+                                                <a class="btn btn-info" href="">{{ order.status }}</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                        <tr><td>No Order Data</td></tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div> <!-- /.table-stats -->
+                    </div>
+                </div> <!-- /.card -->
+            </div>  <!-- /.col-lg-8 -->
+
+            
+        </div>
+    </div>
+    <!-- /.orders -->
+{% endblock content %}
